@@ -1,0 +1,80 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Course Planner &amp; Registration — UI Design Prototype</title>
+  <script>
+    // Apply the saved theme (or the device preference) before first paint to avoid a flash.
+    (function () {
+      var t = null;
+      try { t = localStorage.getItem('ui-proto-theme'); } catch (e) {}
+      if (t !== 'light' && t !== 'dark') t = window.matchMedia && matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+      document.documentElement.setAttribute('data-theme', t);
+    })();
+  </script>
+  <link rel="stylesheet" href="fonts/fonts.css">
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+  <a class="skip" href="#col-registration">Skip to Registration</a>
+  <header class="topbar">
+    <div class="brand">
+      <h1>Course Planner &amp; Registration</h1>
+      <span class="sub">Student concept prototype · Spring 2027 · mock data</span>
+    </div>
+    <div class="top-actions">
+      <button type="button" id="btn-guide" class="btn small">Try these scenarios</button>
+      <button type="button" id="btn-reset-widths" class="btn small ghost desktop-only" title="Reset the three sections to equal widths">Equal widths</button>
+      <button type="button" id="btn-theme" class="theme-switch" role="switch" aria-checked="false" aria-label="Dark mode">
+        <span class="theme-track" aria-hidden="true"><span class="theme-thumb"></span></span>
+        <span class="theme-label">Dark</span>
+      </button>
+      <button type="button" id="btn-reset" class="btn small danger">Reset demo</button>
+    </div>
+  </header>
+  <p class="demo-banner">Independent student design concept — not an official site of, or endorsed by, any university. All courses, seats, and grades are mock data stored only in this browser.
+    <span id="storage-warn" hidden> ⚠ Browser storage is unavailable, so changes will be lost on refresh.</span></p>
+
+  <main class="columns" id="columns">
+    <section id="col-courses" class="col" aria-labelledby="h-courses">
+      <div class="col-head">
+        <h2 id="h-courses"><span class="col-num">1</span> Course Schedule</h2>
+        <span id="courses-count" class="muted small" aria-live="polite"></span>
+      </div>
+      <div id="courses-filters"></div>
+      <div id="courses-body" class="col-scroll" tabindex="-1"></div>
+    </section>
+
+    <div class="resizer" id="resizer-1" data-index="0" role="separator" aria-orientation="vertical" tabindex="0"
+         aria-controls="col-courses col-calendar" aria-label="Resize Course Schedule and Calendar (arrow keys; Home/End; double-click or Enter resets)"></div>
+
+    <section id="col-calendar" class="col" aria-labelledby="h-calendar">
+      <div class="col-head"><h2 id="h-calendar"><span class="col-num">2</span> Calendar</h2></div>
+      <div id="calendar-body" class="col-scroll"></div>
+    </section>
+
+    <div class="resizer" id="resizer-2" data-index="1" role="separator" aria-orientation="vertical" tabindex="0"
+         aria-controls="col-calendar col-registration" aria-label="Resize Calendar and Registration (arrow keys; Home/End; double-click or Enter resets)"></div>
+
+    <section id="col-registration" class="col" aria-labelledby="h-registration">
+      <div class="col-head"><h2 id="h-registration"><span class="col-num">3</span> Registration</h2></div>
+      <div id="registration-body" class="col-scroll"></div>
+    </section>
+  </main>
+
+  <div id="popover" class="popover" role="dialog" aria-labelledby="pop-title" hidden></div>
+  <dialog id="dlg" aria-label="Dialog"></dialog>
+  <div id="toasts" class="toasts" aria-live="polite"></div>
+
+  <script src="js/data.js"></script>
+  <script src="js/store.js"></script>
+  <script src="js/logic.js"></script>
+  <script src="js/panel-courses.js"></script>
+  <script src="js/panel-calendar.js"></script>
+  <script src="js/panel-registration.js"></script>
+  <script src="js/export.js"></script>
+  <script src="js/layout.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,34 @@
+/*
+ * Charis SIL — SIL Open Font License 1.1 (https://openfontlicense.org).
+ * Copyright SIL Global. Font files placed in this folder must be unmodified and accompanied
+ * by the OFL.txt license file from the official package.
+ *
+ * The browser uses, in order: an installed copy of Charis SIL, the bundled .woff2 files in
+ * this folder (if present), then the serif fallback stack in styles.css (Charter on macOS —
+ * the Bitstream design Charis SIL is derived from — then Iowan Old Style, Cambria, Georgia).
+ * See fonts/README.md for how to add the font files.
+ */
+@font-face {
+  font-family: "Charis SIL";
+  font-style: normal; font-weight: 400; font-display: swap;
+  src: local("Charis SIL"), local("CharisSIL"), local("CharisSIL-Regular"),
+       url("CharisSIL-Regular.woff2") format("woff2"), url("CharisSIL-Regular.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Charis SIL";
+  font-style: italic; font-weight: 400; font-display: swap;
+  src: local("Charis SIL Italic"), local("CharisSIL-Italic"),
+       url("CharisSIL-Italic.woff2") format("woff2"), url("CharisSIL-Italic.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Charis SIL";
+  font-style: normal; font-weight: 700; font-display: swap;
+  src: local("Charis SIL Bold"), local("CharisSIL-Bold"),
+       url("CharisSIL-Bold.woff2") format("woff2"), url("CharisSIL-Bold.ttf") format("truetype");
+}
+@font-face {
+  font-family: "Charis SIL";
+  font-style: italic; font-weight: 700; font-display: swap;
+  src: local("Charis SIL Bold Italic"), local("CharisSIL-BoldItalic"),
+       url("CharisSIL-BoldItalic.woff2") format("woff2"), url("CharisSIL-BoldItalic.ttf") format("truetype");
+}

@@ -1,0 +1,39 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Sample past syllabus (mock)</title>
+  <style>
+    body { font-family: Georgia, "Times New Roman", serif; max-width: 760px; margin: 0 auto; padding: 24px 16px 60px; color: #1f2937; line-height: 1.5; }
+    .mock { background: #fef3c7; border: 2px dashed #d97706; padding: 10px 14px; border-radius: 8px; font-family: system-ui, sans-serif; font-size: 14px; }
+    h1 { margin-bottom: 0; } .meta { color: #6b7280; margin-top: 4px; }
+    table { border-collapse: collapse; width: 100%; } td, th { border: 1px solid #d1d5db; padding: 6px 8px; text-align: left; }
+  </style>
+</head>
+<body>
+  <p class="mock"><strong>SAMPLE / MOCK DOCUMENT.</strong> Generated for the course-planning proof of concept. Not a real syllabus from any instructor or semester.</p>
+  <main id="out"><p>Loading…</p></main>
+  <script src="../js/data.js"></script>
+  <script>
+    (function () {
+      const u = new URLSearchParams(location.search).get('u');
+      const s = SEED.sections.find(x => x.unique === u);
+      const out = document.getElementById('out');
+      const esc = t => String(t).replace(/[&<>"]/g, c => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
+      if (!s) { out.innerHTML = '<h1>Syllabus not found</h1><p>No sample syllabus for that section.</p>'; return; }
+      const weeks = ['Course overview and fundamentals', 'Core concepts I', 'Core concepts II', 'Applications and worked problems', 'Exam 1 review / Exam 1',
+        'Intermediate topics', 'Design and analysis case study', 'Lab / project work session', 'Exam 2 review / Exam 2', 'Advanced topics', 'Team project presentations', 'Final review'];
+      out.innerHTML =
+        '<h1>' + esc(s.dept + ' ' + s.num + ': ' + s.title) + '</h1>' +
+        '<p class="meta">Sample past syllabus · Fall 2025 (mock) · ' + esc(s.instructor) + '</p>' +
+        '<h2>Description</h2><p>' + esc(s.description) + '</p>' +
+        '<h2>Meetings</h2><ul>' + s.meetings.map(m => '<li>' + esc(m) + '</li>').join('') + '</ul>' +
+        '<h2>Grading (sample)</h2><table><tr><th>Component</th><th>Weight</th></tr>' +
+        [['Homework', '20%'], ['Quizzes', '10%'], ['Exam 1', '20%'], ['Exam 2', '20%'], ['Final project / exam', '30%']].map(r => '<tr><td>' + r[0] + '</td><td>' + r[1] + '</td></tr>').join('') + '</table>' +
+        '<h2>Tentative schedule (sample)</h2><ol>' + weeks.map(w => '<li>' + w + '</li>').join('') + '</ol>';
+      document.title = s.dept + ' ' + s.num + ' sample syllabus (mock)';
+    })();
+  </script>
+</body>
+</html>
